@@ -18,7 +18,7 @@ import { useAdminLoginMutation } from 'src/redux/api/adminApi';
 import { useAuthContext } from 'src/contexts/auth-context';
 
 const Page = () => {
-  const { signIn } = useAuthContext(); // Get the signIn function from the authentication context
+  const { signIn } = useAuthContext(); // Get the signIn function from the authentication context.
   const [adminLogin, { isLoading, isError, error }] = useAdminLoginMutation();
   const [errorMessage, setErrorMessage] = useState('');
   
