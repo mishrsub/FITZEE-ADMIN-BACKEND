@@ -3,7 +3,7 @@ import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 export const newsAPI = createApi({
   reducerPath: "newsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/mainNews/",
+    baseUrl: "http://35.154.95.255:8000/api/mainNews/",
   }),
   endpoints: (builder) => ({
     addNews: builder.mutation({

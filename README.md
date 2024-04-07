@@ -50,7 +50,7 @@ to save more time and design efforts :)
 
 - Start the server: `npm run dev` or `yarn dev`
 
-- Views are on: `localhost:3000`
+- Views are on: `35.154.95.255:3000`
 
 ## File Structure
 

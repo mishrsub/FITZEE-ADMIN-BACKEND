@@ -18,7 +18,7 @@ export const workshopAPI = createApi({
   }),
 });
 
-// localhost:8000/api/workshop/deleteWorkshop/65d71e8351631f98c555b10e
+// 35.154.95.255:8000/api/workshop/deleteWorkshop/65d71e8351631f98c555b10e
 export const {
   useGetWorkshopsQuery,
   useDeleteWorkshopMutation

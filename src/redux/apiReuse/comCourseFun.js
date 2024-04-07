@@ -28,7 +28,7 @@ export const editCompProgram = async(params,bodyData) =>{
       }
     }
 
-    const response = await axios.patch(`http://localhost:8000/api/course/competitive/editProgram/${params}`,bodyData,config);
+    const response = await axios.patch(`http://35.154.95.255:8000/api/course/competitive/editProgram/${params}`,bodyData,config);
 
     return response.data;
   } catch (error) {

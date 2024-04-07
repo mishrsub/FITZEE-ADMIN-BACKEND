@@ -9,7 +9,7 @@ export const addResult = async(bodyData) =>{
       }
     }
 
-    const response = await axios.post(`http://localhost:8000/api/course/result`,bodyData,config);
+    const response = await axios.post(`http://35.154.95.255:8000/api/course/result`,bodyData,config);
 
     return response.data;
   } catch (error) {
@@ -26,7 +26,7 @@ export const addResultYear = async(bodyData) =>{
         }
       }
   
-      const response = await axios.post(`http://localhost:8000/api/course/result/addYear`,bodyData,config);
+      const response = await axios.post(`http://35.154.95.255:8000/api/course/result/addYear`,bodyData,config);
   
       return response.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const addResultYear = async(bodyData) =>{
         }
       }
   
-      const response = await axios.patch(`http://localhost:8000/api/course/result/${params}`,bodyData,config);
+      const response = await axios.patch(`http://35.154.95.255:8000/api/course/result/${params}`,bodyData,config);
   
       return response.data;
     } catch (error) {
