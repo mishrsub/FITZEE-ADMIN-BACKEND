@@ -19,7 +19,7 @@ import { useAuthContext } from 'src/contexts/auth-context';
 
 const Page = () => {
   const { signIn } = useAuthContext(); // Get the signIn function from the authentication context...
-  const [adminLogin, { isLoading, isError, error }] = useAdminLoginMutation();
+  const [adminLogin, { isLoading, isError, error }] = useAdminLoginMutation();//some changes
   const [errorMessage, setErrorMessage] = useState('');
   
   const router = useRouter();
