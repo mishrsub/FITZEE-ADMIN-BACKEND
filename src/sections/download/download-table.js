@@ -15,10 +15,11 @@ import {
 import { Scrollbar } from "src/components/scrollbar";
 import { useState } from "react";
 import Modals from "src/components/Modal";
-import AddClassForm from "src/components/courses/AddClassForm";
-import { useRemoveClassMutation } from "src/redux/api/courseApi";
+import AddMenuForm from "../../components/download/AddMenuForm";
+import { useGetAllMenuQuery, useRemoveMenuMutation } from "src/redux/api/downloadApi";
+import { Bounce, toast } from "react-toastify";
 
-export const AddCourseTable = (props) => {
+export const AddDownloadTable = (props) => {
   const {
     count = 0,
     items = [],
@@ -30,26 +31,33 @@ export const AddCourseTable = (props) => {
   } = props;
 
   const [open, setOpen] = useState(false);
-  const [classData, setClassData] = useState({});
-  const [disableButtons, setDisableButtons] = useState({});
-  const [removeClass, { isLoading, isError, isSuccess }] = useRemoveClassMutation();
+  const [menuData, setMenuData] = useState({});
+  const [removeMenu, { isLoading, isError, isSuccess }] = useRemoveMenuMutation();
+  const { refetch } = useGetAllMenuQuery();
 
-  console.log("====================================");
-  console.log("This course class table", items);
-  console.log("====================================");
   const handleOpen = (id) => {
-    const classDataItem = items.find((value) => value._id === id);
-    setClassData(classDataItem);
+    const menuDataItem = items.find((value) => value._id === id);
+    setMenuData(menuDataItem);
     setOpen(true);
   };
 
   const handleClose = () => setOpen(false);
 
-  const deleteClass = async (_id) => {
-    setDisableButtons((prev) => ({ ...prev, [_id]: !prev[_id] })); // Disable the clicked button
-
-    const removedClass = await removeClass({ _id });
+  const deleteMenu = async (_id) => {
+    const removed = await removeMenu({ _id });
+    refetch();
     // Add logic to handle the result of the removeClass mutation
+    toast.success(`🦄 Menu removed successfully!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   return (
@@ -65,30 +73,30 @@ export const AddCourseTable = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((courseClass) => {
-                const isSelected = selected.includes(courseClass._id);
+              {items.map((menuData) => {
+                const isSelected = selected.includes(menuData._id);
 
                 console.log("====================================");
-                console.log("Course class: ", courseClass);
+                console.log("Course class: ", menuData);
                 console.log("====================================");
                 return (
-                  <TableRow hover key={courseClass._id} selected={isSelected}>
-                    <TableCell>Class {courseClass.name}</TableCell>
+                  <TableRow hover key={menuData._id} selected={isSelected}>
+                    <TableCell>{menuData.title}</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>
                       <Button
                         sx={{
-                          backgroundColor: disableButtons[courseClass._id] ? "green" : "red",
+                          backgroundColor: "red",
                           color: "#fff",
                           padding: "0.3rem 1rem 0.3rem 1rem",
                         }}
-                        onClick={() => deleteClass(courseClass._id)}
+                        onClick={() => deleteMenu(menuData._id)}
                         disabled={isLoading}
                       >
-                        {disableButtons[courseClass._id] ? "Enable" : "Disable"}
+                        delete
                       </Button>
                     </TableCell>
                     <TableCell sx={{ textAlign: "center", cursor: "pointer" }}>
-                      <FontAwesomeIcon icon={faEdit} onClick={() => handleOpen(courseClass._id)} />
+                      <FontAwesomeIcon icon={faEdit} onClick={() => handleOpen(menuData._id)} />
                     </TableCell>
                   </TableRow>
                 );
@@ -97,8 +105,8 @@ export const AddCourseTable = (props) => {
           </Table>
         </Box>
         <Modals
-          Form={() => <AddClassForm prefillData={classData} editBtnTitle={"Edit Class"} />}
-          title={"Edit class"}
+          Form={() => <AddMenuForm prefillData={menuData} editBtnTitle={"Edit Menu"} />}
+          title={"Edit Menu"}
           open={open}
           handleClose={handleClose}
         />
@@ -116,7 +124,7 @@ export const AddCourseTable = (props) => {
   );
 };
 
-AddCourseTable.propTypes = {
+AddDownloadTable.propTypes = {
   count: PropTypes.number,
   items: PropTypes.array,
   onDeselectAll: PropTypes.func,

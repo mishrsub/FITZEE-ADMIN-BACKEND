@@ -172,6 +172,24 @@ export const items = [
     ),
   },
   {
+    title: "Downloads",
+    path: "/download/downloads",
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    ),
+  },
+  {
+    title: "Downloads Upload",
+    path: "/download/uploadDownload",
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    ),
+  },
+  {
     title: "Carousol Program",
     path: "/selectedCarousolProgram",
     icon: (

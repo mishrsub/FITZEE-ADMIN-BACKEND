@@ -9,6 +9,7 @@ import { workshopAPI } from "../api/eventApi";
 import { compCourseAPI } from "../api/compCourseApi";
 import { newsAPI } from "../api/newsApi";
 import { adminAPI } from "../api/adminApi";
+import { downloadAPI } from "../api/downloadApi";
 
 export const store = configureStore({
   reducer: {
@@ -16,12 +17,13 @@ export const store = configureStore({
     [recentnewsAPI.reducerPath]: recentnewsAPI.reducer,
     [upcomingAdmissionAPI.reducerPath]: upcomingAdmissionAPI.reducer,
     [courseAPI.reducerPath]: courseAPI.reducer,
-    [resultAPI.reducerPath]:resultAPI.reducer,
-    [contactAPI.reducerPath]:contactAPI.reducer,
-    [workshopAPI.reducerPath]:workshopAPI.reducer,
-    [compCourseAPI.reducerPath]:compCourseAPI.reducer,
-    [newsAPI.reducerPath]:newsAPI.reducer,
-    [adminAPI.reducerPath]:adminAPI.reducer
+    [resultAPI.reducerPath]: resultAPI.reducer,
+    [contactAPI.reducerPath]: contactAPI.reducer,
+    [workshopAPI.reducerPath]: workshopAPI.reducer,
+    [compCourseAPI.reducerPath]: compCourseAPI.reducer,
+    [newsAPI.reducerPath]: newsAPI.reducer,
+    [adminAPI.reducerPath]: adminAPI.reducer,
+    [downloadAPI.reducerPath]: downloadAPI.reducer,
   },
   middleware: (mid) => [
     ...mid(),
@@ -34,6 +36,7 @@ export const store = configureStore({
     workshopAPI.middleware,
     compCourseAPI.middleware,
     newsAPI.middleware,
-    adminAPI.middleware
+    adminAPI.middleware,
+    downloadAPI.middleware,
   ],
 });
